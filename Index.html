@@ -1,0 +1,204 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A Little Surprise ♡</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  text-align: center;
+  color: #784d61;
+  background: linear-gradient(135deg, #fff0f5, #ffe0ec, #fff8ef);
+  overflow-x: hidden;
+}
+
+main {
+  max-width: 500px;
+  margin: auto;
+  padding: 28px 18px 50px;
+}
+
+.tag {
+  font: 12px Arial, sans-serif;
+  letter-spacing: 3px;
+  color: #b87995;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 18px 0;
+}
+
+p { line-height: 1.8; }
+
+.card {
+  background: #ffffffd9;
+  border: 1px solid #f7d6e3;
+  border-radius: 24px;
+  padding: 24px 18px;
+  margin: 22px 0;
+  box-shadow: 0 12px 35px #d59db522;
+}
+
+.envelope {
+  font-size: 82px;
+  cursor: pointer;
+  animation: float 2s infinite ease-in-out;
+}
+
+@keyframes float {
+  50% { transform: translateY(-8px) rotate(3deg); }
+}
+
+button {
+  border: none;
+  border-radius: 30px;
+  padding: 13px 21px;
+  background: #d985a8;
+  color: white;
+  font-size: 15px;
+  margin: 7px;
+  cursor: pointer;
+}
+
+.hidden { display: none; }
+
+.letter {
+  white-space: pre-line;
+  text-align: left;
+  background: #fff7fb;
+  border-radius: 16px;
+  padding: 20px;
+  line-height: 1.9;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.photos img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #f8dce7;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  pointer-events: none;
+  animation: rise 4s linear forwards;
+}
+
+@keyframes rise {
+  to {
+    transform: translateY(-110vh) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+footer {
+  font: 12px Arial, sans-serif;
+  color: #a77c8e;
+  margin-top: 30px;
+}
+</style>
+</head>
+
+<body>
+<main>
+  <div class="tag">A LITTLE SOMETHING FOR YOU ♡</div>
+
+  <h1>Hey, <span id="name">Cutie</span>! 🌹</h1>
+  <p>I made a tiny corner of the internet just for you.</p>
+
+  <section class="card">
+    <div class="envelope" onclick="openLetter()">💌</div>
+    <h2>A little letter for you</h2>
+    <p>Tap the envelope to open your surprise.</p>
+    <button onclick="openLetter()">Open your letter ♡</button>
+    <div id="letter" class="hidden">
+      <div class="letter" id="letterText"></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Little moments 📸</h2>
+    <p>A few things to make you smile.</p>
+    <div class="photos">
+      <img src="photo1.jpg" alt="Memory one">
+      <img src="photo2.jpg" alt="Memory two">
+      <img src="photo3.jpg" alt="Memory three">
+      <img src="photo4.jpg" alt="Memory four">
+    </div>
+    <p style="font-size:12px">
+      We'll add your photos in a later step.
+    </p>
+  </section>
+
+  <section class="card">
+    <h2>One last little surprise ✨</h2>
+    <p>Ready for a tiny reminder?</p>
+    <button onclick="showSurprise()">Tap here ♡</button>
+    <p id="surpriseText" class="hidden">
+      You make ordinary moments feel a little more special. 🌸
+    </p>
+  </section>
+
+  <footer>MADE WITH A LITTLE CARE ♡</footer>
+</main>
+
+<script>
+const theirName = "Cutie";
+
+const letterMessage = `Happy Birthday! 🎂
+
+I wanted to make something a little different for you.
+
+You have a way of making a day brighter
+just by being yourself.
+
+I hope this year brings you happiness,
+beautiful memories, and lots of reasons to smile.
+
+I'm really glad I got to know you.
+
+Have the loveliest birthday! ♡`;
+
+document.getElementById("name").textContent = theirName;
+document.getElementById("letterText").textContent = letterMessage;
+
+function openLetter() {
+  document.getElementById("letter").classList.remove("hidden");
+  makeHearts();
+}
+
+function showSurprise() {
+  document.getElementById("surpriseText").classList.remove("hidden");
+  makeHearts();
+}
+
+function makeHearts() {
+  for (let i = 0; i < 14; i++) {
+    const heart = document.createElement("span");
+    heart.className = "heart";
+    heart.textContent = ["🌹", "💝", "🕸️", "💖"][i % 4];
+    heart.style.left = Math.random() * 95 + "vw";
+    heart.style.fontSize = (16 + Math.random() * 18) + "px";
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 4000);
+  }
+}
+</script>
+</body>
+</html>
